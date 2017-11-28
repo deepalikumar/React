@@ -7,34 +7,41 @@ import Person from './Person/Person.js'
 class App extends Component {
   state = {
     persons: [
-      {name: "Max", age: 29},
-      {name: "Manu", age: 2},
-      {name: "blah", age: 3}
+      {id: "ahc",name: "Max", age: 29},
+      {id: "bab",name: "Manu", age: 2},
+      {id: "nan",name: "blah", age: 3}
     ],
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    // NEVER DO thos  this.state.persons[0].name = "Maximilian";
-    this.setState(
-      {persons: [
-        {name: newName, age: 29},
-        {name: "Manu", age: 2},
-        {name: "blah", age: 33}
-    ]} )
-  }
+  // switchNameHandler = (newName) => {
+  //   // NEVER DO thos  this.state.persons[0].name = "Maximilian";
+  //   this.setState(
+  //     {persons: [
+  //       {name: newName, age: 29},
+  //       {name: "Manu", age: 2},
+  //       {name: "blah", age: 33}
+  //   ]} )
+  // }
 
 
   nameChangedHandler = (event) => {
     this.setState(
       {persons: [
-        {name: "Max", age: 29},
-        {name: event.target.value , age: 2},
-        {name: "blah", age: 33}
+        { name: "Max", age: 29},
+        { name: event.target.value , age: 2},
+        { name: "blah", age: 33}
       ]
     }
     )
 
+  }
+
+  deletePersonHandler = (personIndex) => {
+  //  const persons = this.state.persons.slice();  //this is correct next syntax is es6 way to do the same thing
+    const persons  = [...this.state.persons];
+    persons.splice(personIndex,1);
+    this.setState({persons: persons })
   }
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
@@ -55,17 +62,12 @@ class App extends Component {
     if (this.state.showPersons ) {
       persons = (
         <div>
-          <Person 
-            name={this.state.persons[0].name} 
-            age={this.state.persons[0].age}/>
-          <Person 
-            name={this.state.persons[1].name} 
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, "Max!!!")}
-            changed={this.nameChangedHandler} >  My Hobbies: Racing</Person>
-          <Person 
-            name={this.state.persons[2].name} 
-            age={this.state.persons[2].age}/>
+          {this.state.persons.map((person, index) => {
+            return <Person click={() => this.deletePersonHandler(index)}
+            name={person.name}
+             age={person.age}
+             key={person.id} /> 
+          })}
         </div> 
 
       )
