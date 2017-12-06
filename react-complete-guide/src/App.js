@@ -73,8 +73,8 @@ class App extends Component {
              /> 
           })}
           
-        </div> 
-        )
+        </div> )
+        style.backgroundColor = "red";
     }
       const classes = [];
       if (this.state.persons.length <= 2){
