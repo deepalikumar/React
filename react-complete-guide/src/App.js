@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person.js'
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 
 
 class App extends Component {
@@ -95,14 +95,14 @@ class App extends Component {
         classes.push('bold');
       }
     return (
-      <div className="App">
-        <h1>Hi, I am a React App!! </h1>
-        <p className={classes.join(' ')}>This is really working !! </p>
-        <button style={style} onClick={this.togglePersonsHandler} > Toggle Persons </button>
-         {persons}
-        
-        
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I am a React App!! </h1>
+          <p className={classes.join(' ')}>This is really working !! </p>
+          <button style={style} onClick={this.togglePersonsHandler} > Toggle Persons </button>
+            {persons}
+        </div>
+      </StyleRoot>
      // React.createElement('div', {className: "App"}, React.createElement('h1', null, "Does it work now?"), "Blah")
 
     );
