@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import Person from './Person/Person.js'
+import styles from './App.css';
+import Person from './Person/Person.js';
 
 
 class App extends Component {
-  state = {
-    persons: [
-      {id: "ahc",name: "Max", age: 29},
-      {id: "bab",name: "Manu", age: 2},
-      {id: "nan",name: "blah", age: 3}
-    ],
-    showPersons: false
-  }
+  
+    state = {
+      persons: [
+        {id: "ahc",name: "Max", age: 29},
+        {id: "bab",name: "Manu", age: 2},
+        {id: "nan",name: "blah", age: 3}
+      ],
+      showPersons: false
+    }
+  
+  
 
   // switchNameHandler = (newName) => {
   //   // NEVER DO thos  this.state.persons[0].name = "Maximilian";
@@ -52,15 +55,17 @@ class App extends Component {
 
   }
   render() {
-    const style = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
+    // const style = {
+    //   backgroundColor: 'green',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer'
+    // };
+
 
     let persons = null;
+    let btnClass = '';
     if (this.state.showPersons ) {
       persons = (
         <div>
@@ -74,21 +79,21 @@ class App extends Component {
           })}
           
         </div> )
-        style.backgroundColor = "red";
+        btnClass = styles.Red;
     }
-      const classes = [];
+      const assigneDclasses = [];
       if (this.state.persons.length <= 2){
-        classes.push('red');
+        assigneDclasses.push(styles.red);
       }
 
       if (this.state.persons.length <=1) {
-        classes.push('bold');
+        assigneDclasses.push(styles.bold);
       }
     return (
-        <div className="App">
+        <div className={styles.App}>
           <h1>Hi, I am a React App!! </h1>
-          <p className={classes.join(' ')}>This is really working !! </p>
-          <button style={style} onClick={this.togglePersonsHandler} > Toggle Persons </button>
+          <p className={assigneDclasses.join(' ')}>This is really working !! </p>
+          <button className={btnClass} onClick={this.togglePersonsHandler} > Toggle Persons </button>
             {persons}
         </div>
      // React.createElement('div', {className: "App"}, React.createElement('h1', null, "Does it work now?"), "Blah")
