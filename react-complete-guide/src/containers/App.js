@@ -19,7 +19,7 @@ class App extends Component {
 
   // switchNameHandler = (newName) => {
   //   // NEVER DO thos  this.state.persons[0].name = "Maximilian";
-  //   this.setState(
+  //   this.setState(   
   //     {persons: [
   //       {name: newName, age: 29},
   //       {name: "Manu", age: 2},
@@ -76,6 +76,7 @@ class App extends Component {
        return (
         <div className={styles.App}>
         <Cockpit 
+          appTitle={this.props.title}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}
