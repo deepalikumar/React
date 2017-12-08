@@ -26,7 +26,19 @@ class App extends Component {
     console.log('[App.js] inside componentDidMount()');
   }
     
-  
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('Update app.js inside shouldcomponetUpdate', nextProps, nextState); 
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+      console.log('update app.ks inside componentWillUpdate()',nextProps, nextState);
+  }
+
+  componentDidUpdate() {
+      console.log('Update app.js inside componentDidUpdate()');
+  }
+ 
   // switchNameHandler = (newName) => {
   //   // NEVER DO thos  this.state.persons[0].name = "Maximilian";
   //   this.setState(   
