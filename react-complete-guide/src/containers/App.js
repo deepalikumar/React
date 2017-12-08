@@ -5,8 +5,10 @@ import Cockpit from '../components/Persons/Cockpit/Cockpit';
 
 
 class App extends Component {
-  
-    state = {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] inside constructor', props);
+    this.state = {
       persons: [
         {id: "ahc",name: "Max", age: 29},
         {id: "bab",name: "Manu", age: 2},
@@ -14,9 +16,17 @@ class App extends Component {
       ],
       showPersons: false
     }
-  
-  
+  }
 
+  componentWillMount(){
+    console.log('[App.js] inside component will mount');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] inside componentDidMount()');
+  }
+    
+  
   // switchNameHandler = (newName) => {
   //   // NEVER DO thos  this.state.persons[0].name = "Maximilian";
   //   this.setState(   
@@ -62,12 +72,13 @@ class App extends Component {
     //   padding: '8px',
     //   cursor: 'pointer'
     // };
+    console.log('[App.js] inside render');
 
 
     let persons = null;
     
     if (this.state.showPersons ) {
-      persons = 
+      persons =   
           <Persons 
              persons={this.state.persons }
              clicked={this.deletePersonHandler}
