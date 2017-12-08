@@ -3,10 +3,38 @@ import Person from './Person/Person'
 
 
 class Persons extends Component {
+    constructor(props) {
+        super(props);
+        console.log('[Persons.js] inside constructor', props);
+      }
+    
+      componentWillMount(){
+        console.log('[Persons.js] inside component will mount');
+      }
+    
+      componentDidMount() {
+        console.log('[Persons.js] inside componentDidMount()');
+      }
+      componentWillReceiveProps(nextProps) {
+        console.log('[will update Person.js] inside componentWillReceiveProps', nextProps);
+      } 
+     
+      shouldComponentUpdate(nextProps, nextState) {
+        console.log('Update person.js inside shouldcomponetUpdate', nextProps, nextState); 
+        return nextProps.persons !== this.props.persons;
+      }
 
+      componentWillUpdate(nextProps, nextState) {
+          console.log('update persons.ks inside componentWillUpdate()',nextProps, nextState);
+      }
 
+      componentDidUpdate() {
+          console.log('Update Persons.js inside componentDidUpdate()');
+      }
+     
     render(){
-        return    this.props.persons.map((person, index ) => {
+        console.log('[Persons.js inside render' );
+        return   this.props.persons.map((person, index ) => {
             return <Person click={ () => this.props.clicked(index) }
             name={person.name }
             age={person.age}
