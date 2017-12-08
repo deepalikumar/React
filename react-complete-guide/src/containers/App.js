@@ -28,7 +28,7 @@ class App extends Component {
     
   shouldComponentUpdate(nextProps, nextState) {
     console.log('Update app.js inside shouldcomponetUpdate', nextProps, nextState); 
-    return true;
+    return nextState.persons !== this.state.persons || nextState.showPersons !== this.state.showPersons
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -98,6 +98,7 @@ class App extends Component {
     }
        return (
         <div className={styles.App}>
+          <button onClick={() =>{this.setState({showPersons: true})}}> Show Persons  </button>
         <Cockpit 
           appTitle={this.props.title}
           showPersons={this.state.showPersons}
