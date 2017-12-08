@@ -16,7 +16,8 @@ class App extends Component {
         {id: "bab",name: "Manu", age: 2},
         {id: "nan",name: "blah", age: 3}
       ],
-      showPersons: false
+      showPersons: false,
+      toggleClicked: 0
     }
   }
 
@@ -74,12 +75,15 @@ class App extends Component {
   }
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({ showPersons: !doesShow }
-    )
-
+    this.setState( (prevState, props) => {
+      return {
+        showPersons: !doesShow,
+        toggleClicked: prevState.toggleClicked + 1
+      }
+    });
   }
   render() {
-    // const style = {
+    // const style = 
     //   backgroundColor: 'green',
     //   font: 'inherit',
     //   border: '1px solid blue',
